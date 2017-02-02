@@ -22,13 +22,33 @@ class Genre(models.Model):
         """
         ordering = ('name',)
 
+class Album(models.Model):
+    """
+    """
+    name = models.CharField(max_length=50, default='')
+    genre = models.ForeignKey("Genre",  on_delete=models.CASCADE)
+
+    def __str__(self):
+        """
+        Method to create a string representing a Product Category of
+            Bangazon API
+        """
+        return self.name
+
+    class Meta:
+        """
+        Class defining metadata for results of querying the Product Category
+            table of Bangazon API
+        """
+        ordering = ('name',)
+
 class Song(models.Model):
     """
     """
     created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=50, default='')
-    artist_name = models.ForeignKey("Artist",
-        on_delete=models.CASCADE)
+    artist_name = models.ForeignKey("Artist", on_delete=models.CASCADE)
+    album_name = models.ForeignKey("Album", on_delete=models.CASCADE)
     genre = models.ForeignKey("Genre",  on_delete=models.CASCADE)
 
 
@@ -70,26 +90,7 @@ class Artist(models.Model):
 
 
 
-class Album(models.Model):
-    """
-    """
-    name = models.CharField(max_length=50, default='')
-    song_name = models.ForeignKey("Song",  on_delete=models.CASCADE)
-    genre = models.ForeignKey("Genre",  on_delete=models.CASCADE)
 
-    def __str__(self):
-        """
-        Method to create a string representing a Product Category of
-            Bangazon API
-        """
-        return self.name
-
-    class Meta:
-        """
-        Class defining metadata for results of querying the Product Category
-            table of Bangazon API
-        """
-        ordering = ('name',)
 
 
 

@@ -14,17 +14,17 @@ class ArtistSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'url', 'name',)
 
 
-class SongSerializer(serializers.ModelSerializer):
+class SongSerializer(serializers.HyperlinkedModelSerializer):
     """
     Class for data serialization of a specific Model: ProductOrder
     """
 
     class Meta:
         model = Song
-        fields = ('id', 'url', 'name', 'artist_name', 'genre')
+        fields = ('id', 'url', 'name', 'artist_name', 'album_name', 'genre')
 
 
-class AlbumSerializer(serializers.ModelSerializer):
+class AlbumSerializer(serializers.HyperlinkedModelSerializer):
     """
     Class for data serialization of a specific Model: Order
     Added ProductOorderSerializer to make nested serializers in the
@@ -33,7 +33,7 @@ class AlbumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Album
         fields = ('id', 'url','name',
-            'song_name','genre')
+                'genre')
         depth = 0
 
 
